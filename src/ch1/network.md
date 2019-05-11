@@ -5,10 +5,12 @@
 ### 네트워크
 > 네트워크 케이블이나 전화선, 무선 링크 등으로 연결되어 동일한 프로토콜을 사용하는 `디바이스`들의 집합
 
-<img src="../img/network.jepg" width="390" height="360" />
+<img src="../img/network.jpeg" width="390" height="360" />
     
 ### 네트워킹
 > 네트워크에 연결된 디바이스들 간의 데이터 전송
+
+
 
 ## 2. 네트워크 통신 방법
 * 주소  
@@ -21,18 +23,23 @@
     
   <img src="../img/packet.jpeg" width="647" height="184" />
 
+
+
 ## 3. OSI 7계층(Open Systems Interconnection 7 Layer)
 > OSI 7 계층은 네트워크에서 통신이 일어나는 과정을 7단계로 나눈 것으로, 1970년대 말 IOS(International Oraganization for Standardization)에 의해 만들어 졌다.
 
----|:---:|---:
-`계층`|명칭|역할| 
-`1`|`물리 계층(Physical Layer)`|데이터 링크 계층에서 형성된 데이터 패킷을 전기 신호나 광 신호로 바꾸어 송수신하는 역할을 담당한다.
-   
+1. 물리 계층(Physical Layer)
 
+  데이터 링크 계층에서 형성된 데이터 패킷을 전기 신호나 광 신호로 바꾸어 송수신하는 역할을 담당한다.
+   
 2. 데이터 링크 계층(Data Link Layer)
 
-3. 네트워크 계층(Network Layer)
+  - 네트워크 계층으로부터의 메시지를 비트로 변환해서, 물리 계층이 전송할 수 있게 한다.
+  - 메시지를 데이터 프레임의 포맷으로 만든다.
+  - 수신자와 발신지 하드웨어 주소를 포함하는 헤더를 추가한다.
 
+3. 네트워크 계층(Network Layer)
+  
 4. 트랜스포트 계층(Transport Layer)
 
 5. 세션 계층(Session Layer)
