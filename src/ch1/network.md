@@ -59,7 +59,10 @@
 ## 4. 인터넷 프로토콜
 > 인터넷은 OSI 3계층인 네트워크 프로토콜에 기반을 둔 하나 이상의 네트워크 모임으로서 전세계적인 `TCP/IP 네트워크`며, `IP 주소` 체계와 `IP 프로토콜`을 사용한다. 
 
-    ### IP(Internet Protocol)
+### IP(Internet Protocol)
+    > IP는 네트워크 계층에 존재하는 프로토콜로서 TCP와 함께 가장 널리 사용되고 있으며 패킷이 상대방에게 안전하게 전송되는 것을 보장하지 않는 즉, 신뢰성 없는 프로토콜이다. 트랜스포트 계층에서 패킷을 안전하게 전달한다는 가정으로 IP는 데이터를 효율적으로 전송하는 것에만 집중하기 때문이다. IP 주소는 32비트 정보로 구성되며, Dot(.)을 구분자로 8비트씩 네 부분으로 나뉜다. 이중 일부는 `네트워크`를 다른 부분은 `호스트`를 나타낸다. 현재의 IP 주소 구조는 낭비가 심해 하나의 네트워크를 좀더 작은 네트워크로 나누기 위해 하위넷(로컬 네트워크)을 사용한다.
+        
+<img src="../img/ip_address.png" width="500" height="250" />
     
 ### ICMP(Internet Control Message Protocol)
 
@@ -81,3 +84,4 @@
 * http://blog.naver.com/PostView.nhn?blogId=shj1126zzang&logNo=220053175349&parentCategoryNo=&categoryNo=&viewDate=&isShowPopularPosts=false&from=postView
 * https://karfn84.tistory.com/entry/network-%ED%8C%A8%ED%82%B7-%EA%B5%AC%EC%A1%B0-ether-tcp-ip-header
 * https://shlee0882.tistory.com/110
+* http://korean-daeddo.blogspot.com/2015/12/ip.html
