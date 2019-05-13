@@ -17,9 +17,11 @@
 <img src="../resource/img/ch2/thread_life_cycle.jpg width="720" height="540" />
 
 1. white-box
+
 <img src="../resource/img/ch2/thread_extend_diagram.jpeg width="390" height="218" />
 
 2. black-box
+
 <img src="../resource/img/ch2/runable_implement_diagram.png width="390" height="218" />
 
 ## 스레드의 종료
