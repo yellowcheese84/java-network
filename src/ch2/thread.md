@@ -10,9 +10,17 @@
  * 스레드는 병렬로 작업을 처리할 수 있어서 서버 프로그램 등 대부분의 경우, 애플리케이션의 성능과 효율을 향상 시켜준다.
  ※ 이미지 프로세싱처럼 CPU 사용률이 높고 오랜 시간이 걸리는 작업은 멀티스레드를 사용하면 오히려 성능이 저하된다.  
 
-<img src="../resource/ch2/process_thread.jpeg" width="421" height="187" />
+<img src="../resource/img/ch2/process_thread.jpeg" width="421" height="187" />
 
 ## 스레드의 생성과 시작
+
+<img src="../resource/img/ch2/thread_life_cycle.jpg width="720" height="540" />
+
+1. white-box
+<img src="../resource/img/ch2/thread_extend_diagram.jpeg width="390" height="218" />
+
+2. black-box
+<img src="../resource/img/ch2/runable_implement_diagram.png width="390" height="218" />
 
 ## 스레드의 종료
 
@@ -26,3 +34,4 @@
 
 ## 참고자료
 * 
+* http://blog.naver.com/PostView.nhn?blogId=ovter&logNo=161128618
