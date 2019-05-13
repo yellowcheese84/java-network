@@ -14,7 +14,9 @@
 
 ## 스레드의 생성과 시작
 
+
 <img src="../resource/img/ch2/thread_life_cycle.jpg width="720" height="540" />
+
 
 1. white-box
 
