@@ -5,8 +5,8 @@
 ### 네트워크
 > 네트워크 케이블이나 전화선, 무선 링크 등으로 연결되어 동일한 프로토콜을 사용하는 `디바이스`들의 집합을 말한다.
 
-<img src="../img/network.jpeg" width="390" height="360" />
-    
+<img src="../resource/img/ch1/network.jpeg" width="390" height="360" />
+            
 ### 네트워킹
 > 네트워크에 연결된 디바이스들 간의 데이터 전송을 말한다.
 
@@ -22,7 +22,7 @@
         * 헤더: 송신자와 수신자의 주소와 체크섬(checksum), 기타 유용한 정보들을 포함한다.        
         * 바디: 전송할 데이터를 바이트 그룹으로 포함한다.
     
-  <img src="../img/packet.jpeg" width="647" height="184" />
+<img src="../resource/img/ch1/packet.jpeg" width="647" height="184" />
 
 
 
@@ -52,7 +52,7 @@
 7. 애플리케이션 계층(Application Layer)
     > 사용자와 컴퓨터가 통신하는 곳으로, 통신하고자 하는 상대를 식별하고 그 상대와의 통신을 확보하는 역할을 한다. 또한 통신을 위한 충분한 자원을 보유하고 있는지의 여부를 판단한다.
 
-<img src="../img/osi_7layer.jpeg" width="721" height="364" />
+<img src="../resource/img/ch1/osi_7layer.jpeg" width="721" height="364" />
 
 
 
@@ -63,7 +63,7 @@
 ### IP(Internet Protocol)
   > IP는 네트워크 계층에 존재하는 프로토콜로서 TCP와 함께 가장 널리 사용되고 있으며 패킷이 상대방에게 안전하게 전송되는 것을 보장하지 않는 즉, 신뢰성 없는 프로토콜이다. 트랜스포트 계층에서 패킷을 안전하게 전달한다는 가정으로 IP는 데이터를 효율적으로 전송하는 것에만 집중하기 때문이다. IP 주소는 32비트 정보로 구성되며, Dot(.)을 구분자로 8비트씩 네 부분으로 나뉜다. 이중 일부는 `네트워크`를 다른 부분은 `호스트`를 나타낸다. 현재의 IP 주소 구조는 낭비가 심해 하나의 네트워크를 좀더 작은 네트워크로 나누기 위해 하위넷(로컬 네트워크)을 사용한다.(ex: 공유기)
         
-<img src="../img/ip_address.png" width="500" height="250" />
+<img src="../resource/img/ch1/ip_address.png" width="500" height="250" />
 
     
 ### ICMP(Internet Control Message Protocol)
@@ -77,7 +77,7 @@
 ### UDP(User Datagram Protocol)
   > 전송한 데이터가 잘 저달되었는지 확인하지 않는 신로성 없는 비연결지향 프로토콜이다. ex) 편지 배달, 음악이나 동영상 스트리밍 서비스  
 
-<img src="../img/difference_tcp_udp.png" width="750" height="355" />
+<img src="../resource/img/ch1/difference_tcp_udp.png" width="750" height="355" />
 
 ## 5. 인터넷 애플리케이션 프로토콜
     * Telnet
@@ -108,7 +108,7 @@
       - 유즈넷 뉴스그룹에 올려진 글들을 관리하기 위해 서버와 클라이언트에 의해 사용되는 프로토콜로 TCP 포트 119번을 사용한다.
 
 ## 6. TCP/IP 스택
-<img src="../img/tcp_ip_stack.jpeg" width="500" height="250" />
+<img src="../resource/img/ch1/tcp_ip_stack.jpeg" width="500" height="250" />
 
 ## 7. 소켓과 포트
 > 네트워크를 통해 애플리케이션 계층으로 들어온 데이터를 프로그램에서 인식해서 사용하기 위해 `소켓`과 `포트`를 사용한다.
@@ -126,7 +126,7 @@
     512 ~ 1023 : 대부분의 운영체제에서 우선권이 있는 프로그램이 사용할 수 있게 예약되어 있다.
     ※ 따라서 표준적으로 사용되는 애플리케이션을 개발할 것이 아니라면 1024 이상의 포트번호를 사용해야 한다. 
 
-<img src="../img/socket_port.png" width="580" height="366" />
+<img src="../resource/img/ch1/socket_port.png" width="580" height="366" />
 
 ## 8. 보안
 > 자산의 본래 가치가 손상되지 않도록 적절한 방법으로 이를 보호하는 것을 의미한다. 인터넷 세계에서의 보안은 해킹(Hacking), 바이러스(Virus) 등으로부터 자산을 보호하는 것이다.
@@ -135,7 +135,7 @@
       - 외부의 불법적인 침입으로부터 내부의 정보자산을 보고하고 유해정보 유입을 차단하기 위한 정책과 이를 지원하는 하드웨어 및 소프트웨어를 말한다.
         일반적으로 방화벽 시스템은 시스템과 인터넷 사이에 설치되는 프록시 서버로, 사전에 방화벽 시스템에 등록된 IP 주소만 접근ㄴ이 가능하도록 관리하는 일종의 차단막 역할을 수행한다.
         
-<img src="../img/proxy_server.png" width="460" height="188" />
+<img src="../resource/img/ch1/proxy_server.png" width="460" height="188" />
       
     
 ## 참고자료
