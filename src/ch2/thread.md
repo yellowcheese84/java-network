@@ -27,7 +27,7 @@
 <img src="../resource/img/ch2/thread_black_box.png" width="390" height="218" />
 
 3. 상속 vs 합성
-  > `GoF의 디자인 패턴`에서는 `Favor object compositon over class inheritance`라고 말한다. 이를 해석하면 `객체 합성이 클래스 상속보다 더 나은 방법이다`
+  > `GoF의 디자인 패턴`에서는 "Favor object compositon over class inheritance"라고 말한다. 이를 해석하면 "객체 합성이 클래스 상속보다 더 나은 방법이다." 라는 내용이다.
   
   * 상속
     > 어떤 객체를 상속하면 private으로 선언되지 않은 모든 변수와 메소드, 생성자가 하위클래스에 노출이 되기 때문에 하위클래스에서 수퍼클래스의 내부가 보인다는 의미로     > 어떤 객체를 상속하면 private으로 선언되지 않은 모든 변수와 메소드, 생성자가 하위클래스에 노출이 되기 때문에 하위클래스에서 수퍼클래스의 내부가 보인다는 의미로 디자인 패턴에서는 상속을 통한 재사용을 `white-box reuse`라고 말한다.
@@ -66,12 +66,14 @@
 자바에서는 애플리케이션 내부의 모든 스레드가 종료되지 않으면 JVM이 종료되지 않는다. `NomalThreadTest.java` 참고하기 바란다.
 
 * 데몬스레드
-  > "애플리케이션 내부의 모든 스레드가 종료되지 않으면 JVM이 종료되지 않는다"는 조건에서 예외가 되는 것으로 `DeamonThreadTest.java`를 참고하기 바란다. 주의할 점은 스레드를 시작시키기 전에 setDeamon() 메소드로 데몬스레드를 설정해 주어야한다. 만약 스레드를 시작시킨 후에 setDeamon() 메소드를 호출하면 `IllegalStateException`이 발생한다.
+  > "애플리케이션 내부의 모든 스레드가 종료되지 않으면 JVM이 종료되지 않는다"는 조건에서 예외가 되는 것으로 `DeamonThreadTest.java`를 참고하기 바란다. 주의할 점은 스레드를 시작시키기 전에 setDeamon() 메소드로 데몬스레드를 설정해 주어야한다. 만약 스레드를 시작시킨 후에 setDeamon() 메소드를 호출하면 IllegalStateException이 발생한다.
   
 * join()
   > main 스레드가 생성해서 실행시킨 스레드가 종료될 때까지 기다려야 하는 상황을 위해 Thread 클래스에는 join() 메소드를 제공하고 있다. `ThreadJoinTest.java`를 참고하기 바란다.
   
 ## 스레드 그룹
+
+<img src="../resource/img/ch2/thread_group.gif" width="312" height="304" />
 
 ## 스레드 우선순위
 
@@ -83,3 +85,4 @@
 * https://12bme.tistory.com/65
 * http://blog.naver.com/PostView.nhn?blogId=ovter&logNo=161128618
 * https://sjh836.tistory.com/121
+* http://www.webbasedprogramming.com/Java-Unleashed-Second-Edition/ch9.htm
