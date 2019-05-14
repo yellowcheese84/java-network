@@ -20,11 +20,11 @@
 
 1. white-box
 
-<img src="../resource/img/ch2/thread_extend_diagram.jpeg" width="390" height="218" />
+<img src="../resource/img/ch2/thread_white_box.png" width="390" height="218" />
 
 2. black-box
 
-<img src="../resource/img/ch2/runable_implement_diagram.png" width="390" height="218" />
+<img src="../resource/img/ch2/thread_black_box.png" width="390" height="218" />
 
 3. 상속 vs 합성
   > `GoF의 디자인 패턴`에서는 `Favor object compositon over class inheritance`라고 말한다. 이를 해석하면 `객체 합성이 클래스 상속보다 더 나은 방법이다`
