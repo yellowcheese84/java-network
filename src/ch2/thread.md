@@ -59,8 +59,19 @@
 
 1. `StopThreadTest.java` 방법에는 몇 가지 문제점이 있는데 만약 스레드가 run() 메소드 안의 트정 로직에서 무한 루프를 돌거나 조건 루프를 도는 시간이 너무 오래 걸리는 작업을 한다면 stopped 플래그를 검사할 수 없다는 것이다. 이럴 경우는 stopped 플래그를 자주 검사할 수 있도록 중간중간에 체크문을 적절히 삽입해야 한다.
 
-2 
+2. `AdvanceStopThread.java` 방법은 interrupt() 메소드를 사용하는 것이다. interrupt() 메소드는 현재 수행하고 있는 명령을 바로 중지시키며, 호출하는 시점에 Object 클래스의 wait() 메소드나 Thread 클래스의 join(), sleep 메소드가 호출된 경우에는 InterruptedException을 발생시킨다.
+
 ## 데몬스레드와 join()
+
+자바에서는 애플리케이션 내부의 모든 스레드가 종료되지 않으면 JVM이 종료되지 않는다. `NomalThreadTest.java` 참고하기 바란다.
+
+* 데몬스레드
+  > "애플리케이션 내부의 모든 스레드가 종료되지 않으면 JVM이 종료되지 않는다"는 조건에서 예외가 되는 것으로 `DeamonThreadTest.java`를 참고하기 바란다. 주의할 점은 스레드를 시작시키기 전에 setDeamon() 메소드로 데몬스레드를 설정해 주어야한다. 만약 스레드를 시작시킨 후에 setDeamon() 메소드를 호출하면 `IllegalStateException`이 발생한다.
+  
+* join()
+  > main 스레드가 생성해서 실행시킨 스레드가 종료될 때까지 기다려야 하는 상황을 위해 Thread 클래스에는 join() 메소드를 제공하고 있다. `ThreadJoinTest.java`를 참고하기 바란다.
+  
+## 스레드 그룹
 
 ## 스레드 우선순위
 
