@@ -1,21 +1,21 @@
 # 스레드(Thread)
 
 ## 스레드란
-프로세스
+`프로세스`
  * 자기 자신만의 주소 공간을 갖는 독립적인(Self-Contained) 실행 프로그램
 
-스레드
+`스레드`
  * 프로세스 내의 독립적인 순차흐름 또는 제어
  * 경량 프로세스(Light-weight Process)
  * 스레드는 병렬로 작업을 처리할 수 있어서 서버 프로그램 등 대부분의 경우, 애플리케이션의 성능과 효율을 향상 시켜준다.
  ※ 이미지 프로세싱처럼 CPU 사용률이 높고 오랜 시간이 걸리는 작업은 멀티스레드를 사용하면 오히려 성능이 저하된다.  
 
-<img src="../resource/img/ch2/process_thread.jpeg" width="421" height="187" />
+<img src="../resource/img/ch2/process_thread.png" width="556" height="370" />
 
 ## 스레드의 생성과 시작
 
 
-<img src="../resource/img/ch2/thread_life_cycle.jpg" width="720" height="540" />
+<img src="../resource/img/ch2/thread_life_cycle.png" width="569" height="329" />
 
 
 1. white-box
@@ -80,5 +80,6 @@
 ## 생성자-소비자 패턴
 
 ## 참고자료
-* 
+* https://12bme.tistory.com/65
 * http://blog.naver.com/PostView.nhn?blogId=ovter&logNo=161128618
+* https://sjh836.tistory.com/121
