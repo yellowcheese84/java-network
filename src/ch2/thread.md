@@ -1,6 +1,6 @@
 # 스레드(Thread)
 
-## 스레드란
+## 1. 스레드란
 > 운영체제에서 실행되는 하나의 프로그램을 프로세스라고 볼 때 스레드란 그 프로세스 안에서 실행되는 하나의 실행흐름이다.
 
 * 프로세스
@@ -19,22 +19,22 @@
     이렇게 자바 언어가 스레드를 강력하게 지원하게 된 이유 중 하나는 자바가 실행되는 기반인 JVM 자체가 하나의 프로세스기 때문이다.
 ```
 
-## 스레드의 생성과 시작
+## 2. 스레드의 생성과 시작
 
 <img src="../resource/img/ch2/thread_life_cycle.png" width="569" height="329" />
 
 
-### 1. white-box
+#### white-box
 > 디자인 패턴에서 상속을 통한 재사용을 white-box-reuse라고 한다.
 
 <img src="../resource/img/ch2/thread_white_box.png" width="390" height="218" />
 
-### 2. black-box
+#### black-box
 > 디자인 패턴에서 합성을 통한 재사용을 black-box-reuse라고 한다.
 
 <img src="../resource/img/ch2/thread_black_box.png" width="390" height="218" />
 
-### 3. 상속 vs 합성
+#### 상속 vs 합성
 > GoF의 디자인 패턴에서는 "Favor object compositon over class inheritance"라고 말한다. 이를 해석하면 "객체 합성이 클래스 상속보다 더 나은 방법이다." 라는 내용이다.
   
   * 상속
@@ -62,10 +62,10 @@
 ```
 
 
-## 스레드의 종료
+## 3. 스레드의 종료
   > stop()이라는 메소드가 있었지만 여러 문제점으로 인해 썬 마이크로시스템즈(Sun Microsystems)에서 이 메소드를 사용하지 말 것을 권고하고 있다. 현재는 크게 두가지 방식으로 구현할 수 있다.
 
-### 1. flag를 이용하는 방법  
+#### flag를 이용하는 방법  
 ```java
     class StopThread implements Runnable {        
         // 조건문을 빠져나가기 위해 사용할 플래그 변수다.
@@ -115,7 +115,7 @@
 stopped 플래그를 검사할 수 없다는 것이다. 
 이럴 경우는 stopped 플래그를 자주 검사할 수 있도록 중간중간에 체크문을 적절히 삽입해야 한다.
 
-### 2. interrupt를 이용하는 방법
+#### interrupt를 이용하는 방법
 ```java
     class AdvanceStopTread implements Runnable {
         @Override
@@ -161,29 +161,29 @@ stopped 플래그를 검사할 수 없다는 것이다.
 호출하는 시점에 `Object` 클래스의 wait() 메소드나 `Thread` 클래스의 join(), sleep 메소드가 호출된 경우에는 
 `InterruptedException`을 발생시킨다.
 
-## 데몬스레드와 join()
+## 4. 데몬스레드와 join()
 > 자바에서는 애플리케이션 내부의 모든 스레드가 종료되지 않으면 JVM이 종료되지 않는다. `NomalThreadTest.java` 참고하기 바란다.
 
-### 1. 데몬스레드
-  > "애플리케이션 내부의 모든 스레드가 종료되지 않으면 JVM이 종료되지 않는다"는 조건에서 예외가 되는 것으로 `DeamonThreadTest.java`를 참고하기 바란다. 
+#### 데몬스레드
+  > "애플리케이션 내부의 모든 스레드가 종료되지 않으면 `JVM`이 종료되지 않는다"는 조건에서 예외가 되는 것으로 `DeamonThreadTest.java`를 참고하기 바란다. 
     주의할 점은 스레드를 시작시키기 전에 setDeamon() 메소드로 데몬스레드를 설정해 주어야한다. 
-    만약 스레드를 시작시킨 후에 setDeamon() 메소드를 호출하면 IllegalStateException이 발생한다.
+    만약 스레드를 시작시킨 후에 setDeamon() 메소드를 호출하면 `IllegalStateException`이 발생한다.
   
-### 2. join()
+#### join()
   > main 스레드가 생성해서 실행시킨 스레드가 종료될 때까지 기다려야 하는 상황을 위해 Thread 클래스에는 join() 메소드를 제공하고 있다. `ThreadJoinTest.java`를 참고하기 바란다.
   
-## 스레드 그룹
+## 5. 스레드 그룹
 > 자바에서 모든 스레드는 특정 스레드 그룹에 멤버로서 존재하게 된다. 
   이때 최상위 스레드 그룹은 MAIN 스레드 그룹인데, 이렇게 만들어진 main 스레드 그룹 인스턴스는 main 스레드를 생성해서 애플리케이션 실행 포인트인 main() 메소드를 호출하는 것이다.
   이후 생성되는 스레드와 스레드 그룹은 기본적으로 main 스레드 그룹에 포함된다. 또한 하나의 스레드 그룹은 하위 스레드 그룹과 스레드들을 멤버로 가질 수 있다.
 
 <img src="../resource/img/ch2/thread_group.gif" width="312" height="304" />
 
-## 스레드 우선순위
+## 6. 스레드 우선순위
 
-## 멀티스레드와 동기화
+## 7. 멀티스레드와 동기화
 
-## 생성자-소비자 패턴
+## 8. 생성자-소비자 패턴
 
 ## 참고자료
 * https://12bme.tistory.com/65
