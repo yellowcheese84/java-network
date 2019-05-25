@@ -24,16 +24,18 @@
 <img src="../resource/img/ch2/thread_life_cycle.png" width="569" height="329" />
 
 
-1. white-box
+### 1. white-box
+> 디자인 패턴에서 상속을 통한 재사용을 white-box-reuse라고 한다.
 
 <img src="../resource/img/ch2/thread_white_box.png" width="390" height="218" />
 
-2. black-box
+### 2. black-box
+> 디자인 패턴에서 합성을 통한 재사용을 black-box-reuse라고 한다.
 
 <img src="../resource/img/ch2/thread_black_box.png" width="390" height="218" />
 
-3. 상속 vs 합성
-  > `GoF의 디자인 패턴`에서는 "Favor object compositon over class inheritance"라고 말한다. 이를 해석하면 "객체 합성이 클래스 상속보다 더 나은 방법이다." 라는 내용이다.
+### 3. 상속 vs 합성
+> GoF의 디자인 패턴에서는 "Favor object compositon over class inheritance"라고 말한다. 이를 해석하면 "객체 합성이 클래스 상속보다 더 나은 방법이다." 라는 내용이다.
   
   * 상속
     > 어떤 객체를 상속하면 private으로 선언되지 않은 모든 변수와 메소드, 생성자가 하위클래스에 노출이 되기 때문에 하위클래스에서 수퍼클래스의 내부가 보인다는 의미로     > 어떤 객체를 상속하면 private으로 선언되지 않은 모든 변수와 메소드, 생성자가 하위클래스에 노출이 되기 때문에 하위클래스에서 수퍼클래스의 내부가 보인다는 의미로 디자인 패턴에서는 상속을 통한 재사용을 `white-box reuse`라고 말한다.
@@ -55,8 +57,8 @@
       * 단점
         - 객체 간의 관계가 수직관계가 아닌 수평 관계이기 때문에 큰 시스템에서 많은 부분에 걸쳐 합성이 사용될 때 객체나 메소드 명이 명확하지 않으면 코드의 가독성이 떨어지고 이해하기 어려워진다.
         
-```
-    * 객체의 캡슐화를 유지할 수 있기 때문에 시스템 설계자들이 상속보다 합성을 더 선호한다.
+```text
+    객체의 캡슐화를 유지할 수 있기 때문에 시스템 설계자들이 상속보다 합성을 더 선호한다.
 ```
 
 
