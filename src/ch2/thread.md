@@ -65,9 +65,99 @@
 ## 스레드의 종료
   > stop()이라는 메소드가 있었지만 여러 문제점으로 인해 썬 마이크로시스템즈(Sun Microsystems)에서 이 메소드를 사용하지 말 것을 권고하고 있다. 현재는 크게 두가지 방식으로 구현할 수 있다.
 
-1. `StopThreadTest.java` 방법에는 몇 가지 문제점이 있는데 만약 스레드가 run() 메소드 안의 트정 로직에서 무한 루프를 돌거나 조건 루프를 도는 시간이 너무 오래 걸리는 작업을 한다면 stopped 플래그를 검사할 수 없다는 것이다. 이럴 경우는 stopped 플래그를 자주 검사할 수 있도록 중간중간에 체크문을 적절히 삽입해야 한다.
+### 1. flag를 이용하는 방법  
+```java
+    class StopThread implements Runnable {        
+        // 조건문을 빠져나가기 위해 사용할 플래그 변수다.
+        private boolean stopped = false;
+        public void run() {
+            // stopped 프래그를 while문 조건으로 사용한다.
+            while (!stopped) {
+                System.out.println("Thread is alive.");
+                try {
+                    
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("Thread is dead..");
+        }
+        // 이 메소드 호출로 StopThread가 멈춘다.
+        public void stop() {
+            stopped = true;
+        }
+    }
+    
+    public class StopThreadTest {
+        public static void main(String[] args){
+            StopThreadTest stt = new StopThreadTest();
+            stt.process();
+        }
+        
+        public void process() {
+            // StopThread 인스턴스를 생성한 후 이 인자를 파라미터로 받는 스레드 인스턴스를 생성하여 시작한다.
+            StopThread st = new StopThread();
+            Thread thread = new Thread( st );
+            thread.start();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            // StopTread를 정지시킨다.
+            st.stop();
+        }
+    }
+```
+    첫 번째 방법에는 몇 가지 문제점이 있는데 
+    만약 스레드가 run() 메소드 안의 트정 로직에서 무한 루프를 돌거나 조건 루프를 도는 시간이 너무 오래 걸리는 작업을 한다면 stopped 플래그를 검사할 수 없다는 것이다. 
+    이럴 경우는 stopped 플래그를 자주 검사할 수 있도록 중간중간에 체크문을 적절히 삽입해야 한다.
 
-2. `AdvanceStopThread.java` 방법은 interrupt() 메소드를 사용하는 것이다. interrupt() 메소드는 현재 수행하고 있는 명령을 바로 중지시키며, 호출하는 시점에 Object 클래스의 wait() 메소드나 Thread 클래스의 join(), sleep 메소드가 호출된 경우에는 InterruptedException을 발생시킨다.
+### 2. interrupt를 이용하는 방법
+```java
+    class AdvanceStopTread implements Runnable {
+        @Override
+        public void run() {
+            try {
+                // isInterrupted() 메소드를 while문 조건으로 사용한다.
+                while (!Thread.currentThread().isInterrupted()) {
+                    System.out.println("Thread is alive..");
+                    Thread.sleep(500);
+                } 
+            } catch (InterruptedException e) {
+                // 예상했던 예외이므로 무시한다.
+            } finally {
+                // 마무리 해야 할 작업이 있는 경우 이곳에서 정리한다.
+                System.out.println("Thread is dead..");
+            }
+        }
+    }
+    
+    public class AdvanceStopThreadTest {
+        public static void main(String[] args){
+            AdvanceStopThreadTest astt = new AdvanceStopThreadTest();
+            astt.process();
+        }
+        
+        public void process() {
+            // AdvancedStopThread 인스턴스를 생성한 후 이 인자를 파라미터로 받는 스레드 인스턴스를 생성한 후 시작한다.
+            AdvanceStopTread ast = new AdvanceStopTread();
+            Thread thread = new Thread(ast);
+            thread.start();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            // AdvancedStopThread를 정지시킨다.
+            thread.isInterrupted();
+        }
+    }
+```
+    두 번째 방법은 interrupt() 메소드를 사용하는 것이다. 
+    interrupt() 메소드는 현재 수행하고 있는 명령을 바로 중지시키며, 
+    호출하는 시점에 Object 클래스의 wait() 메소드나 Thread 클래스의 join(), sleep 메소드가 호출된 경우에는 InterruptedException을 발생시킨다.
 
 ## 데몬스레드와 join()
 
