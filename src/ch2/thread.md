@@ -67,48 +67,48 @@ stop()이라는 메소드가 있었지만 여러 문제점으로 인해 썬 마�
 
 #### flag를 이용하는 방법  
 ```java
-    class StopThread implements Runnable {        
-        // 조건문을 빠져나가기 위해 사용할 플래그 변수다.
-        private boolean stopped = false;
-        public void run() {
-            // stopped 프래그를 while문 조건으로 사용한다.
-            while (!stopped) {
-                System.out.println("Thread is alive.");
-                try {
-                    
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            System.out.println("Thread is dead..");
-        }
-        // 이 메소드 호출로 StopThread가 멈춘다.
-        public void stop() {
-            stopped = true;
-        }
-    }
-    
-    public class StopThreadTest {
-        public static void main(String[] args){
-            StopThreadTest stt = new StopThreadTest();
-            stt.process();
-        }
-        
-        public void process() {
-            // StopThread 인스턴스를 생성한 후 이 인자를 파라미터로 받는 스레드 인스턴스를 생성하여 시작한다.
-            StopThread st = new StopThread();
-            Thread thread = new Thread( st );
-            thread.start();
+class StopThread implements Runnable {        
+    // 조건문을 빠져나가기 위해 사용할 플래그 변수다.
+    private boolean stopped = false;
+    public void run() {
+        // stopped 프래그를 while문 조건으로 사용한다.
+        while (!stopped) {
+            System.out.println("Thread is alive.");
             try {
-                Thread.sleep(1000);
+                
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            // StopTread를 정지시킨다.
-            st.stop();
         }
+        System.out.println("Thread is dead..");
     }
+    // 이 메소드 호출로 StopThread가 멈춘다.
+    public void stop() {
+        stopped = true;
+    }
+}
+
+public class StopThreadTest {
+    public static void main(String[] args){
+        StopThreadTest stt = new StopThreadTest();
+        stt.process();
+    }
+    
+    public void process() {
+        // StopThread 인스턴스를 생성한 후 이 인자를 파라미터로 받는 스레드 인스턴스를 생성하여 시작한다.
+        StopThread st = new StopThread();
+        Thread thread = new Thread( st );
+        thread.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // StopTread를 정지시킨다.
+        st.stop();
+    }
+}
 ```
 첫 번째 방법에는 몇 가지 문제점이 있는데, 
 만약 스레드가 run() 메소드 안의 트정 로직에서 무한 루프를 돌거나 조건 루프를 도는 시간이 너무 오래 걸리는 작업을 한다면 
@@ -117,44 +117,44 @@ stopped 플래그를 검사할 수 없다는 것이다.
 
 #### interrupt를 이용하는 방법
 ```java
-    class AdvanceStopTread implements Runnable {
-        @Override
-        public void run() {
-            try {
-                // isInterrupted() 메소드를 while문 조건으로 사용한다.
-                while (!Thread.currentThread().isInterrupted()) {
-                    System.out.println("Thread is alive..");
-                    Thread.sleep(500);
-                } 
-            } catch (InterruptedException e) {
-                // 예상했던 예외이므로 무시한다.
-            } finally {
-                // 마무리 해야 할 작업이 있는 경우 이곳에서 정리한다.
-                System.out.println("Thread is dead..");
-            }
+class AdvanceStopTread implements Runnable {
+    @Override
+    public void run() {
+        try {
+            // isInterrupted() 메소드를 while문 조건으로 사용한다.
+            while (!Thread.currentThread().isInterrupted()) {
+                System.out.println("Thread is alive..");
+                Thread.sleep(500);
+            } 
+        } catch (InterruptedException e) {
+            // 예상했던 예외이므로 무시한다.
+        } finally {
+            // 마무리 해야 할 작업이 있는 경우 이곳에서 정리한다.
+            System.out.println("Thread is dead..");
         }
+    }
+}
+
+public class AdvanceStopThreadTest {
+    public static void main(String[] args){
+        AdvanceStopThreadTest astt = new AdvanceStopThreadTest();
+        astt.process();
     }
     
-    public class AdvanceStopThreadTest {
-        public static void main(String[] args){
-            AdvanceStopThreadTest astt = new AdvanceStopThreadTest();
-            astt.process();
+    public void process() {
+        // AdvancedStopThread 인스턴스를 생성한 후 이 인자를 파라미터로 받는 스레드 인스턴스를 생성한 후 시작한다.
+        AdvanceStopTread ast = new AdvanceStopTread();
+        Thread thread = new Thread(ast);
+        thread.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        
-        public void process() {
-            // AdvancedStopThread 인스턴스를 생성한 후 이 인자를 파라미터로 받는 스레드 인스턴스를 생성한 후 시작한다.
-            AdvanceStopTread ast = new AdvanceStopTread();
-            Thread thread = new Thread(ast);
-            thread.start();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            // AdvancedStopThread를 정지시킨다.
-            thread.isInterrupted();
-        }
+        // AdvancedStopThread를 정지시킨다.
+        thread.isInterrupted();
     }
+}
 ```
 두 번째 방법은 interrupt() 메소드를 사용하는 것이다. 
 `interrupt()` 메소드는 현재 수행하고 있는 명령을 바로 중지시키며, 
@@ -228,7 +228,8 @@ Thread 클래스에서는 이런 상황에서 개발자가 스레드를 적절�
 
 * 메소드 영역 ( Method Area )
       
-      JVM의 모든 스레드들이 공유하는 데이터 영역으로 런타임 컨스턴트 풀과 각 클래스에 대한 생성자와 메소드들에 대한 코드를 저장하는 영역이다.
+      JVM의 모든 스레드들이 공유하는 데이터 영역으로 
+      런타임 컨스턴트 풀과 각 클래스에 대한 생성자와 메소드들에 대한 코드를 저장하는 영역이다.
 
 * 런타임 컨스턴트 풀 영역 ( Runtime Constant Pool )
       
@@ -244,6 +245,82 @@ Thread 클래스에서는 이런 상황에서 개발자가 스레드를 적절�
 
 #### lock, monitor, synchronized
 
+`자바의 런타임 데이터 영역들과 공유 데이터`의 포함 관계는 아래와 같다.
+
+  > 객체(힙 영역)  >  메소드(메소드 영역)  >  변수(런타임 컨스턴트 풀 영역)
+  
+힙에 저장된 어떤 객체의 변수 값(런타임 컨스턴트 풀에 저장된 참조 변수)이 여러 스레드에 의해 동시에 직간접적으로 
+, 즉 해당 객체의 메소드에 의해 또는 객체의 변수 값이 직접 변경됨으로 인해 공유 문제가 발생하는 것이다.
+동기화 문제가 발생하는 최소 단위는 객체며, 문제 발생 지점은 객체가 소유한 내부 변수가 된다.
+이런 점 때문에 자바는 동기화 문제를 해결하기 위해 `락(lock 또는 세마포어(semaphore)라고 부른다)` 이라는 것을 포함시켰다.
+    
+  
+* 락(lock)
+       
+      어떤 객체에 여러 스레드가 동시에 접근하지 못하도록 하기 위한 것으로 모든 객체가 인스턴스화될 때,
+      즉 힙 영역에 객체가 저장될 때 자동으로 생성된다. 
+      동기화가 필요한 부분에서 락을 사용하기 위해 아래와 같이 synchronized 키워드를 사용한다.
+      
+```java
+// 메소드에 선언
+public class SynchronizedTest {
+    // 메소드에 synchronized 키워드를 사용한다.
+    // 모니터는 현재 클래스 인스턴스의 락을 검사한다.
+    public synchronized String drawingOut(String money) throws AccountException {
+        // 기타 고객 데이터 초기화 작업
+        initSomething();
+        
+        // 1. 잔액을 계산한다.
+        // 2. 통장의 잔액이 찾을 금액보다 크다면 정상처리하고
+        //    반대일 경우 AccountException을 던진다.
+        
+        // 마무리 작업을 하고 남은 금액을 리턴한다.
+        finish();
+        return something;
+    }
+}
+
+// 블록 형태로 사용
+public class SynchronizedBlockTest {
+    public String drawingOut(String money) throws AccountException {
+        // 고객 데이터 초기화 작업
+        initSomething();
+        
+        // 공유 데이터의 대상인 고객의 통장을 락의 대상으로 설정한다.
+        // 모니터는 userAccount 인스턴스의 락을 검사한다.
+        synchronized (userAccount) {
+            // 1. 잔액을 계산한다.
+            // 2. 통장의 잔액이 찾을 금액보다 크다면 정상적으로 처리한다.
+            //    반대일 경우에는 AccountException을 던진다.
+            // 이처럼 필요한 부분만 블록 형태로 동기화하는 것이 더 효율적이다.
+        }
+    }
+    
+    // 마무리 작업과 남은 금액을 리턴한다.
+    finish();
+    return something;
+}
+```
+
+* 모니터(monitor)
+      
+      모니터는 락의 현재 사용 여부를 검사함으로써 각 객체를 보호하는데, 락과 마찬가지로 객체의 레퍼런스와 연결되어 있다.
+      즉 어떤 클래스를 new 키워드를 사용해서 인스턴스화하면 락과 함께 자동으로 생성된다.
+      
+
+1. 어떤 스레드가 synchronized 키워드를 사용한 메소드나 블록에 접근하게 되면 그 synchronized와 연관된 모니터는 
+해당 객체의 레퍼런스를 검사한다.
+
+2. 락이 아직 다른 어떤 어떤 스레드에게 사용되어지지 않고 있다면 JVM에게 알려준다.
+
+3. JVM은 `monitoerenter`라는 JVM 내부 명령으로 해당 객체의 락을 요청한 스레드에게 준다.
+   반대로 락이 다른 어떤 스레드에 의해 사용되고 있다면 락이 반환될 때까지 더 이상 진행되지 않고 그 스레드는 대기하게 된다.
+   
+4. 스레드가 락을 얻은 후에 synchronized 메소드나 블록을 다 마치고 나면 `monitorexit`라는 JVM 내부 명령을 
+   자동으로 실행해서 해당 스레드가 얻은 객체의 락을 즉시 반환한다.       
+      
+동기화를 사용하면 `성능이 저하`되므로 `블록 형태로 사용`과 같이 꼭 필요한 부분에 한정해서 사용하는 것을 권장한다.
+
 #### wait, notify, notifyAll
 
 #### ThreadLocal
@@ -255,3 +332,4 @@ Thread 클래스에서는 이런 상황에서 개발자가 스레드를 적절�
 * http://blog.naver.com/PostView.nhn?blogId=ovter&logNo=161128618
 * https://sjh836.tistory.com/121
 * http://www.webbasedprogramming.com/Java-Unleashed-Second-Edition/ch9.htm
+* https://www.studytonight.com/java/component-of-java.php
