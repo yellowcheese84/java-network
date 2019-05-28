@@ -200,6 +200,40 @@ Thread 클래스에서는 이런 상황에서 개발자가 스레드를 적절�
      
 ## 7. 멀티스레드와 동기화
 
+#### 자바의 런타임 데이터 영역들과 공유 데이터
+
+<img src="../resource/img/ch2/architecture-of-java.jpg" width="600" height="530" /> 
+
+* PC 레지스터 영역 ( Program Counter Register)
+           
+      JVM 안에서 실행되는 모든 스레드에는 각자 자신의 PC(Program Count) 레지스터가 있다. 
+      각 스레드들은 특정 객체의 메소드를 호출하고 그 메소드를 실행하는 도중 다른 객체의 특정 메소드를 호출하는 등의 과정이 생기는데,
+      PC 레지스터는 해당 스레드가 어떤 부분을 어떤 명열으로 실행할지에 대해 기록하는 영역이다.
+      PC 레지스터는 일반적인 메소드를 실행할 경우 실행하는 부분의 JVM 명령의 주소를 포함하게 되지만, 
+      JNI 사용을 위해 네이티브 메소드를 호출한 경우에는 사용되지 않는다. 
+
+* JVM 스택 영역 ( Java Virtual Machine Stacks )
+
+
+* 힙 영역 ( Heap )
+
+
+* 메소드 영역 ( Method Area )
+
+
+* 런타임 컨스턴트 풀 영역 ( Runtime Constant Pool )
+
+
+* 네이티브 메소드 스택 영역 ( Native Method Stacks )
+
+
+
+#### lock, monitor, synchronized
+
+#### wait, notify, notifyAll
+
+#### ThreadLocal
+
 ## 8. 생성자-소비자 패턴
 
 ## 참고자료
